@@ -31,20 +31,13 @@
         }
     },
     "variables": {
-        "imagePublisher": "sophos",
-        "imageOffer": "sophos-xg",
-        "adminUsername": "azureuser"
+       "imageId": "[resourceId(pcsg-xgimages-rg/providers/Microsoft.Compute/images/sophosxg-v18_0_mr5)]"
     },
     "resources": [
         {
             "apiVersion": "2019-07-01",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('vmName')]",
-            "plan": {
-                "publisher": "[variables('imagePublisher')]",
-                "product": "[variables('imageOffer')]",
-                "name": "[parameters('imageSku')]"
-            },
             "location": "[parameters('location')]",
             "properties": {
                 "availabilitySet": {
@@ -60,10 +53,7 @@
                 },
                 "storageProfile": {
                     "imageReference": {
-                        "publisher": "[variables('imagePublisher')]",
-                        "offer": "[variables('imageOffer')]",
-                        "sku": "[parameters('imageSku')]",
-                        "version": "latest"
+                        "id": "[variables('ImageId')]"
                     },
                     "dataDisks": [
                         {
